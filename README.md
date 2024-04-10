@@ -71,6 +71,7 @@ Boot loader:
 
 Utilities needed for setup:
 - `vi`
+- `wget`
 - `git`
 - `ansible`
 
@@ -80,14 +81,14 @@ Utilities needed for setup:
 2. Change root into the new system with `arch-chroot /mnt`
 3. Set the timezone with `ln -sf /usr/share/zoneinfo/US/Denver /etc/localtime`
 4. Generate /etc/adjtime with `hwclock --systohc`
-5. Uncomment `en_US.UTF-8 UTF-8` from `/etc/locale.gen` with `vi` or `sed -i '/s/#en_US.UTF-8/en_US.UTF-8/g' /etc/local.gen`
+5. Uncomment `en_US.UTF-8 UTF-8` from `/etc/locale.gen` with `vi` or `sed -i '/s/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen`
 6. Generate locales with `locale-gen`
 7. Create locale.conf and set LANG `echo "LANG=en_US.UTF-8" >> /etc/locale.conf`
 8. Create and set hostname `echo "somehostname" >> /etc/hostname`
 9. Set root password with `passwd`
 10. Install grub with `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
 11. Generate grub config with `grub-mkconfig -o /boot/grub/grub.cfg`
-12. Enable network manager with `systemmctl enable NetworkManager.service`
+12. Enable network manager with `systemctl enable NetworkManager.service`
 13. Clone this repository with `git clone https://github.com/yamlinson/arch-btw.git /usr/local/bin/arch-btw`
 14. Exit chroot with `exit`
 15. Unmount volumes with `umount -R /mnt`
