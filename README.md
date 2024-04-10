@@ -55,6 +55,7 @@ Follow the format `pacstrap -K /mnt x y z` with each of the necessary packages b
 
 Core packages:
 - `base`
+- `base-devel`
 - `linux`
 - `linux-firmware`
 
@@ -63,6 +64,7 @@ Other firmware:
 
 Network utilities:
 - `networkmanager`
+- `dhclient`
 - `wpa_supplicant`
 
 Boot loader:
@@ -70,7 +72,7 @@ Boot loader:
 - `efibootmgr`
 
 Utilities needed for setup:
-- `vi`
+- `vim`
 - `wget`
 - `git`
 - `ansible`
