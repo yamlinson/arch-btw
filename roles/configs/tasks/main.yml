@@ -1,0 +1,9 @@
+- name: Allow wheel group to sudo
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^#%wheel ALL=(ALL:ALL) ALL'
+    line: '%wheel ALL=(ALL:ALL) ALL'
+    validate: /usr/sbin/visudo -cf %s
+
+

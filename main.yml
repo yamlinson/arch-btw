@@ -1,0 +1,19 @@
+---
+- name: Configure users
+  hosts: all
+  become: true
+  roles:
+    - users
+
+- name: Install/Update packages
+  hosts: all
+  become: true
+  roles:
+    - packages
+
+- name: Configure system and services
+  hosts: all
+  become: true
+  roles:
+    - configs
+
