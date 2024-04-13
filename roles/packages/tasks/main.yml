@@ -11,6 +11,8 @@
       - neovim
       - less
       - zsh
+      - github-cli
+      - tree
       # Browser
       - firefox
     state: present
