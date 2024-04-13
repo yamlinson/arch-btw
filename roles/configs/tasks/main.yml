@@ -6,4 +6,12 @@
     line: '%wheel ALL=(ALL:ALL) ALL'
     validate: /usr/sbin/visudo -cf %s
 
+- name: KDE Plasma Shortcuts copied
+  ansible.builtin.copy:
+    src: kglobalshortcutsrc
+    dest: /home/main/.config/kglobalshortcutsrc
+    owner: main
+    group: main
+    mode: 0600
+
 
