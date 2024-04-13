@@ -10,6 +10,7 @@
     name: main
     uid: 1010
     groups: main
+    shell: /bin/zsh
     append: true
 
 - name: Set group main GID
