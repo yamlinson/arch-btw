@@ -24,6 +24,11 @@ all:
           - packages
           - to
           - install
+        aur_packages:
+          # Names of packages to install from AUR via yay
+          - packages
+          - to
+          - install
         enabled_services:
           # Names of services to enable in systemctl
           - services
