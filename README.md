@@ -98,4 +98,13 @@ Utilities needed for setup:
 
 ### Post-Install
 
-0. If using wireless network, connect with `nmcli --ask device wifi connect SSID`
+- If using wireless network, connect with `nmcli --ask device wifi connect SSID`
+
+## Ansible
+
+1. `cd` to `/usr/local/bin/arch-btw`
+2. Modify `hosts.yml` with appropriate variable values
+3. Install required collections/roles with `ansible-galaxy install -r requirements.yml`
+4. Run the playbook with `ansible-playbook main.yml --ask-become-pass`
+
+
