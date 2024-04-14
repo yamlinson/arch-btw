@@ -1,21 +1,19 @@
-- name: Admin user config
+- name: Configure users
   ansible.builtin.user:
-    name: admin
-    uid: 1000
-    groups: admin, wheel
-    append: true
+    name: "{{ user.username }}"
+    uid: "{{ user.uid }}"
+    groups: "{{ user.groups }}"
+    shell: "{{ user.shell }}"
+  loop: "{{ users|flatten(levels=1) }}"
+  loop_control:
+    loop_var: user
 
-- name: Main user config
-  ansible.builtin.user:
-    name: main
-    uid: 1010
-    groups: main
-    shell: /bin/zsh
-    append: true
-
-- name: Set group main GID
+- name: Configure groups
   ansible.builtin.group:
-    name: main
-    gid: 1010
+    name: "{{ group.groupname }}"
+    gid: "{{ group.gid }}"
+  loop: "{{ local_groups|flatten(levels=1) }}"
+  loop_control:
+    loop_var: group
 
 

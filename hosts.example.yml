@@ -1,0 +1,34 @@
+all:
+  hosts:
+    localhost:
+      vars:
+        users:
+          - username: admin
+            uid: 1000
+            groups:
+              - wheel
+              - admin
+            shell: /path/to/shell
+          - username: main
+            uid: 1001
+            groups:
+              - main
+            shell: /path/to/shell
+        local_groups:
+          - groupname: group1
+            gid: 1000
+          - groupname: group2
+            gid: 1001
+        pacman_packages:
+          # Names of packages to install via pacman
+          - packages
+          - to
+          - install
+        enabled_services:
+          # Names of services to enable in systemctl
+          - services
+          - to
+          - enable
+
+
+

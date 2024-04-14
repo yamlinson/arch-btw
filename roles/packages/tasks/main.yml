@@ -1,24 +1,14 @@
 - name: Packages installed and updated
   ansible.builtin.package:
-    name:
-      # Desktop Environment
-      - plasma-meta
-      - sddm
-      - sddm-kcm
-      - dolphin
-      # Terminal
-      - kitty
-      - neovim
-      - less
-      - zsh
-      - github-cli
-      - tree
-      # Browser
-      - firefox
+    name: "{{ pacman_packages }}"
     state: present
     update_cache: true
 
-- name: SDDM service enabled
+- name: Services enabled
   ansible.builtin.service:
-    name: sddm.service
+    name: "{{ service }}"
     enabled: yes
+  loop: "{{ enabled_services }}"
+  loop_control:
+    loop_var: service
+

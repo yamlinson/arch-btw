@@ -1,18 +1,21 @@
 ---
 - name: Configure users
-  hosts: all
+  hosts: localhost
+  connection: local
   become: true
   roles:
     - users
 
 - name: Install/Update packages
-  hosts: all
+  hosts: localhost
+  connection: local
   become: true
   roles:
     - packages
 
 - name: Configure system and services
-  hosts: all
+  hosts: localhost
+  connection: local
   become: true
   roles:
     - configs
