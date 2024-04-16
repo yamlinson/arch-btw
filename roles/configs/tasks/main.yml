@@ -14,4 +14,25 @@
     group: main
     mode: 0600
 
+- name: Copy zsh config
+  ansible.builtin.copy:
+    src: ".zshrc"
+    dest: "/home/{{ user.username }}/.zshrc"
+    owner: "{{ user.username }}"
+    group: "{{ user.groupname }}"
+    mode: 0600
+  loop: "{{ zsh_users|flatten(levels=1) }}"
+  loop_control:
+    loop_var: user
+
+- name: Copy p10k config
+  ansible.builtin.copy:
+    src: ".p10k.zsh"
+    dest: "/home/{{ user.username }}/.p10k.zsh"
+    owner: "{{ user.username }}"
+    group: "{{ user.groupname }}"
+    mode: 0600
+  loop: "{{ zsh_users|flatten(levels=1) }}"
+  loop_control:
+    loop_var: user
 
