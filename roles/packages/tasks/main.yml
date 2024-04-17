@@ -1,3 +1,10 @@
+- name: Multilib enabled
+  community.general.ini_file:
+    path: /etc/pacman.conf
+    section: multilib
+    option: Include
+    value: "/etc/pacman.d/mirrorlist"
+
 - name: Packages installed and updated
   ansible.builtin.package:
     name: "{{ pacman_packages }}"
