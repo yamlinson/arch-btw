@@ -1,5 +1,5 @@
 ---
-- name: Configure users
+- name: Configure users and groups
   hosts: localhost
   connection: local
   become: true

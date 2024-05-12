@@ -2,9 +2,20 @@
   ansible.builtin.lineinfile:
     path: /etc/sudoers
     state: present
-    regexp: '^#%wheel ALL=(ALL:ALL) ALL'
+    regexp: '^# %wheel ALL=(ALL:ALL) ALL'
     line: '%wheel ALL=(ALL:ALL) ALL'
     validate: /usr/sbin/visudo -cf %s
+
+- name: User config dirs present
+  ansible.builtin.file:
+    path: "/home/{{ user.username }}/.config"
+    state: directory
+    mode: '0700'
+    owner: "{{ user.username }}"
+    group: "{{ user.username }}"
+  loop: "{{ zsh_users|flatten(levels=1) }}"
+  loop_control:
+    loop_var: user
 
 - name: KDE Plasma Shortcuts copied
   ansible.builtin.copy:
