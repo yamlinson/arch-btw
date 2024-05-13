@@ -72,7 +72,7 @@ Boot loader:
 - `efibootmgr`
 
 Utilities needed for setup:
-- `vim`
+- `vi`
 - `wget`
 - `git`
 - `ansible`
@@ -86,7 +86,7 @@ Utilities needed for setup:
 5. Uncomment `en_US.UTF-8 UTF-8` from `/etc/locale.gen` with `vi` or `sed -i '/s/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen`
 6. Generate locales with `locale-gen`
 7. Create locale.conf and set LANG `echo "LANG=en_US.UTF-8" >> /etc/locale.conf`
-8. Create and set hostname `echo "somehostname" >> /etc/hostname`
+8. Create and set hostname `echo "somehostname" > /etc/hostname`
 9. Set root password with `passwd`
 10. Install grub with `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
 11. Generate grub config with `grub-mkconfig -o /boot/grub/grub.cfg`
@@ -102,7 +102,7 @@ Utilities needed for setup:
 
 ## Ansible
 
-1. `cd` to `/usr/local/bin/arch-btw`
+1. `cd` to `/usr/local/arch-btw`
 2. Modify `hosts.yml` with appropriate variable values
 3. Install required collections/roles with `ansible-galaxy install -r requirements.yml`
 4. Run the playbook with `ansible-playbook main.yml --ask-become-pass`
