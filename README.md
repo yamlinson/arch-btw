@@ -91,7 +91,7 @@ Utilities needed for setup:
 10. Install grub with `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
 11. Generate grub config with `grub-mkconfig -o /boot/grub/grub.cfg`
 12. Enable network manager with `systemctl enable NetworkManager.service`
-13. Clone this repository with `git clone https://github.com/yamlinson/arch-btw.git /usr/local/bin/arch-btw`
+13. Clone this repository with `git clone https://github.com/yamlinson/arch-btw.git /usr/local/arch-btw`
 14. Exit chroot with `exit`
 15. Unmount volumes with `umount -R /mnt`
 16. `reboot`
