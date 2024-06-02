@@ -36,4 +36,6 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # User aliases
 alias apa="ansible-playbook --ask-become-pass"
+alias trig="tree -aCI '.git'"
+alias gfs="git fetch && git status"
 

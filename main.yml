@@ -1,22 +1,16 @@
 ---
-- name: Configure users and groups
+- name: Configure system
   hosts: localhost
   connection: local
   become: true
-  roles:
-    - users
+  tasks:
 
-- name: Install/Update packages
-  hosts: localhost
-  connection: local
-  become: true
-  roles:
-    - packages
+    - name: User tasks
+      ansible.builtin.import_tasks: "tasks/users.yml"
 
-- name: Configure system and services
-  hosts: localhost
-  connection: local
-  become: true
-  roles:
-    - configs
+    - name: Packages tasks
+      ansible.builtin.import_tasks: "tasks/packages.yml"
+
+    - name: Config tasks
+      ansible.builtin.import_tasks: "tasks/dotfiles.yml"
 

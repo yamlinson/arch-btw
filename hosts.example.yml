@@ -19,6 +19,9 @@ all:
             groupname: admin
           - username: main
             groupname: main
+        kde_users:
+          - username: main
+            groupname: main
         local_groups:
           - groupname: group1
             gid: 1000

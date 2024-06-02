@@ -1,4 +1,4 @@
-- name: Configure groups
+- name: Groups configured
   ansible.builtin.group:
     name: "{{ group.groupname }}"
     gid: "{{ group.gid }}"
@@ -6,7 +6,7 @@
   loop_control:
     loop_var: group
 
-- name: Configure users
+- name: Users configured
   ansible.builtin.user:
     name: "{{ user.username }}"
     uid: "{{ user.uid }}"
@@ -15,4 +15,12 @@
   loop: "{{ users|flatten(levels=1) }}"
   loop_control:
     loop_var: user
+
+- name: Group 'wheel' can sudo
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^# %wheel ALL=(ALL:ALL) ALL'
+    line: '%wheel ALL=(ALL:ALL) ALL'
+    validate: /usr/sbin/visudo -cf %s
 

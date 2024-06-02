@@ -1,8 +1,39 @@
 ---
-- name: Configure users and groups
+- name: Initialize system
   hosts: localhost
   connection: local
   become: true
-  roles:
-    - init
+  tasks:
 
+  - name: ZSH installed
+    ansible.builtin.package:
+      name: zsh
+      state: present
+      update_cache: true
+
+  - name: Configure groups
+    ansible.builtin.group:
+      name: "{{ group.groupname }}"
+      gid: "{{ group.gid }}"
+    loop: "{{ local_groups|flatten(levels=1) }}"
+    loop_control:
+      loop_var: group
+
+  - name: Configure users
+    ansible.builtin.user:
+      name: "{{ user.username }}"
+      uid: "{{ user.uid }}"
+      groups: "{{ user.groups }}"
+      shell: "{{ user.shell }}"
+    loop: "{{ users|flatten(levels=1) }}"
+    loop_control:
+      loop_var: user
+
+  - name: Allow wheel group to sudo
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      state: present
+      regexp: '^# %wheel ALL=(ALL:ALL) ALL'
+      line: '%wheel ALL=(ALL:ALL) ALL'
+      validate: /usr/sbin/visudo -cf %s
+   

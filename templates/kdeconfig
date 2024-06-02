@@ -1,0 +1,5 @@
+[services][firefox.desktop]
+_launch=Meta+B
+
+[services][kitty.desktop]
+_launch=Meta+T
