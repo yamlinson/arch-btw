@@ -81,7 +81,7 @@ Utilities needed for setup:
 
 1. Generate fstab with `genfstab -U /mnt >> /mnt/etc/fstab`
 2. Change root into the new system with `arch-chroot /mnt`
-3. Set the timezone with `ln -sf /usr/share/zoneinfo/US/Denver /etc/localtime`
+3. Set the timezone with `ln -sf /usr/share/zoneinfo/America/Denver /etc/localtime`
 4. Generate /etc/adjtime with `hwclock --systohc`
 5. Uncomment `en_US.UTF-8 UTF-8` from `/etc/locale.gen` with `vi` or `sed -i '/s/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen`
 6. Generate locales with `locale-gen`
