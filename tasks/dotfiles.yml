@@ -1,0 +1,62 @@
+---
+- name: KDE Config
+  block:
+
+    - name: KDE config dirs present
+      ansible.builtin.file:
+        path: "/home/{{ user.username }}/.kde"
+        state: directory
+        owner: "{{ user.username }}"
+        group: "{{ user.groupname }}"
+        mode: '0700'
+      loop: "{{ kde_users|flatten(levels=1) }}"
+      loop_control:
+        loop_var: user
+
+    - name: KDE Plasma config copied
+      ansible.builtin.copy:
+        src: "../files/kdeconfig"
+        dest: "/home/{{ user.username }}/.kde/kdeconfig"
+        owner: "{{ user.username }}"
+        group: "{{ user.groupname }}"
+        mode: '0600'
+      loop: "{{ kde_users|flatten(levels=1) }}"
+      loop_control:
+        loop_var: user
+
+- name: Other Configs
+  block:
+
+    - name: User config dirs present
+      ansible.builtin.file:
+        path: "/home/{{ user.username }}/.config"
+        state: directory
+        owner: "{{ user.username }}"
+        group: "{{ user.groupname }}"
+        mode: '0700'
+      loop: "{{ zsh_users|flatten(levels=1) }}"
+      loop_control:
+        loop_var: user
+
+    - name: Copy zsh config
+      ansible.builtin.copy:
+        src: "../files/.zshrc"
+        dest: "/home/{{ user.username }}/.zshrc"
+        owner: "{{ user.username }}"
+        group: "{{ user.groupname }}"
+        mode: '0600'
+      loop: "{{ zsh_users|flatten(levels=1) }}"
+      loop_control:
+        loop_var: user
+
+    - name: Copy p10k config
+      ansible.builtin.copy:
+        src: "../files/.p10k.zsh"
+        dest: "/home/{{ user.username }}/.p10k.zsh"
+        owner: "{{ user.username }}"
+        group: "{{ user.groupname }}"
+        mode: '0600'
+      loop: "{{ zsh_users|flatten(levels=1) }}"
+      loop_control:
+        loop_var: user
+
