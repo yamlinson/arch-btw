@@ -1,5 +1,5 @@
 ---
-- name: Configure system
+- name: Configure system | Tasks
   hosts: localhost
   connection: local
   become: true
@@ -13,4 +13,12 @@
 
     - name: Config tasks
       ansible.builtin.import_tasks: "tasks/dotfiles.yml"
+
+- name: Configure system | Nvidia
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - role: nvidia
+      when: nvidia == true
 
