@@ -79,19 +79,19 @@ Utilities needed for setup:
 
 ### Finish Install
 
-1. Generate fstab with `genfstab -U /mnt >> /mnt/etc/fstab`
+1. Generate fstab with `genfstab -U /mnt > /mnt/etc/fstab`
 2. Change root into the new system with `arch-chroot /mnt`
 3. Set the timezone with `ln -sf /usr/share/zoneinfo/America/Denver /etc/localtime`
 4. Generate /etc/adjtime with `hwclock --systohc`
 5. Uncomment `en_US.UTF-8 UTF-8` from `/etc/locale.gen` with `vi` or `sed -i '/s/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen`
 6. Generate locales with `locale-gen`
-7. Create locale.conf and set LANG `echo "LANG=en_US.UTF-8" >> /etc/locale.conf`
+7. Create locale.conf and set LANG `echo "LANG=en_US.UTF-8" > /etc/locale.conf`
 8. Create and set hostname `echo "somehostname" > /etc/hostname`
 9. Set root password with `passwd`
 10. Install grub with `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
 11. Generate grub config with `grub-mkconfig -o /boot/grub/grub.cfg`
 12. Enable network manager with `systemctl enable NetworkManager.service`
-13. Clone this repository with `git clone https://github.com/yamlinson/arch-btw.git /usr/local/arch-btw`
+13. Clone this repository with `git clone https://github.com/yamlinson/arch-btw.git /opt/git/arch-btw`
 14. Exit chroot with `exit`
 15. Unmount volumes with `umount -R /mnt`
 16. `reboot`
@@ -102,9 +102,11 @@ Utilities needed for setup:
 
 ## Ansible
 
-1. `cd` to `/usr/local/arch-btw`
+1. `cd` to `/opt/git/arch-btw`
 2. Modify `hosts.yml` with appropriate variable values
 3. Install required collections/roles with `ansible-galaxy install -r requirements.yml`
-4. Run the playbook with `ansible-playbook main.yml --ask-become-pass`
+4. Initialize a non-root admin user with `ansible-playbook init.yml`
+5. Set passwords and change to the non-root admin account
+6. Run the full playbook with `ansible-playbook main.yml --ask-become-pass`
 
 
