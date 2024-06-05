@@ -27,6 +27,7 @@ all:
             gid: 1000
           - groupname: group2
             gid: 1001
+        nvidia: false
         pacman_packages:
           # Names of packages to install via pacman
           - packages
