@@ -34,6 +34,9 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# User functions
+mkcd () { mkdir $1 && cd $1 }
+
 # User aliases
 alias apa="ansible-playbook --ask-become-pass"
 alias trig="tree -aCI '.git'"
