@@ -4,7 +4,6 @@
   connection: local
   become: true
   tasks:
-
     - name: User tasks
       ansible.builtin.import_tasks: "tasks/users.yml"
 
@@ -22,3 +21,9 @@
     - role: nvidia
       when: nvidia == true
 
+- name: Configure caps2esc
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - role: caps2esc

@@ -1,0 +1,25 @@
+---
+- name: Requisite packages installed
+  ansible.builtin.package:
+    name:
+      - interception-tools
+      - interception-caps2esc
+    state: present
+    update_cache: true
+
+- name: /etc/interception/udevmon.d present
+  ansible.builtin.file:
+    path: /etc/interception/udevmon.d
+    state: directory
+    mode: "0755"
+
+- name: caps2esc config present
+  ansible.builtin.copy:
+    src: caps2esc.yaml
+    dest: /etc/interception/udevmon.d/caps2esc.yaml
+
+- name: udevmon service enabled and started
+  ansible.builtin.service:
+    name: udevmon
+    enabled: yes
+    state: "started"
