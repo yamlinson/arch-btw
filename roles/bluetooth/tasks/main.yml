@@ -1,0 +1,14 @@
+---
+- name: Bluetooth packages installed
+  ansible.builtin.package:
+    name:
+      - bluez
+      - bluez-utils
+    state: present
+    update_cache: true
+
+- name: Bluetooth service started and enabled
+  ansible.builtin.service:
+    name: bluetooth
+    enabled: true
+    state: "started"

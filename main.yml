@@ -21,9 +21,17 @@
     - role: nvidia
       when: nvidia == true
 
-- name: Configure caps2esc
+- name: Configure system | caps2esc
   hosts: localhost
   connection: local
   become: true
   roles:
     - role: caps2esc
+
+- name: Configure system | Bluetooth
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - role: bluetooth
+      when: bluetooth == true
