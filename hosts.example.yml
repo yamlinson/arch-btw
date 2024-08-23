@@ -29,6 +29,10 @@ all:
             gid: 1001
         nvidia: false
         bluetooth: false
+        disks:
+          - path: "/mnt/example"
+            src: "/dev/sda1"
+            fstype: "ext4"
         pacman_packages:
           # Names of packages to install via pacman
           - packages

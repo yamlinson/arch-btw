@@ -1,0 +1,8 @@
+---
+- name: Disks mounted
+  ansible.posix.mount:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    fstype: "{{ item.fstype }}"
+    state: mounted
+  loop: "{{ disks }}"

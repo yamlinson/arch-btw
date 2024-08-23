@@ -23,3 +23,5 @@
     - role: caps2esc
     - role: bluetooth
       when: bluetooth == true
+    - role: mount
+      when: disks is defined
