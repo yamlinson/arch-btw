@@ -29,6 +29,7 @@ all:
             gid: 1001
         nvidia: false
         bluetooth: false
+        mopidy: false
         disks:
           - path: "/mnt/example"
             src: "/dev/sda1"

@@ -1,0 +1,45 @@
+---
+- name: Packages installed from Pacman
+  ansible.builtin.package:
+    name:
+      - mopidy
+      - ncmpcpp
+    state: present
+    update_cache: true
+
+- name: Packages installed from AUR
+  become: false
+  kewlfft.aur.aur:
+    use: yay
+    state: present
+    name:
+      - mopidy-mpd
+      - mopidy-jellyfin
+
+- name: Check for mopidy config
+  ansible.builtin.stat:
+    path: /etc/mopidy/mopidy.conf
+  register: mopidyconfig
+
+- name: Copy config template
+  ansible.builtin.template:
+    src: mopidy.conf.j2
+    dest: /etc/mopidy/mopidy.conf
+  when: not mopidyconfig.stat.exists
+
+- name: Mark config as set
+  ansible.builtin.file:
+    path: /etc/mopidy/set_by_ansible
+    state: touch
+  when: not mopidyconfig.stat.exists
+
+- name: Mopidy service running
+  ansible.builtin.service:
+    name: mopidy
+    enabled: true
+    state: "started"
+
+- name: Pipewire module config copied
+  ansible.builtin.template:
+    src: 50-mpd-network.conf
+    dest: /etc/pipewire/pipewire.conf.d/50-mpd-network.conf

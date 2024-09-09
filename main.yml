@@ -1,4 +1,3 @@
----
 - name: Configure system | Tasks
   hosts: localhost
   connection: local
@@ -25,3 +24,5 @@
       when: bluetooth == true
     - role: mount
       when: disks is defined
+    - role: mopidy
+      when: mopidy == true

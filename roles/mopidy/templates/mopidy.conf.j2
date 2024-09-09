@@ -1,0 +1,14 @@
+[audio]
+mixer_volume = 50
+output = pulsesink server=127.0.0.1
+
+[jellyfin]
+hostname = {{ jellyfin_hostname }}
+username = {{ jellyfin_username }}
+password = {{ jellyfin_password }}
+
+[mpd]
+enabled = true
+hostname = localhost
+port = 6600
+connection_timeout = 300
